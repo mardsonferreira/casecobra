@@ -7,6 +7,7 @@ import { Resend } from "resend";
 import OrderReceivedEmail from "@/components/emails/OrderReceivedEmail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const adminEmail = process.env.ADMIN_EMAIL;
 
 export async function POST(req: Request) {
     try {
@@ -72,7 +73,7 @@ export async function POST(req: Request) {
             });
 
             await resend.emails.send({
-                from: "CaseCobra <hello@joshtriedcoding.com>",
+                from: `CaseCobra <${adminEmail}>`,
                 to: [event.data.object.customer_details.email],
                 subject: "Thanks for your order!",
                 react: OrderReceivedEmail({
