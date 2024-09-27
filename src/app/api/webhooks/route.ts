@@ -9,6 +9,8 @@ import OrderReceivedEmail from "@/components/emails/OrderReceivedEmail";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const adminEmail = process.env.ADMIN_EMAIL;
 
+console.log("ADMIN EMAIL", adminEmail);
+
 export async function POST(req: Request) {
     try {
         const body = await req.text();
